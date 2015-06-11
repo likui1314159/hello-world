@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="dyst"
+  id="myeclipse.1293094029984"
+  context-root="/dyst"
+  j2ee-spec="5.0"
+  archive="dyst.war">
+  <attributes>
+    <attribute name="webrootdir" value="/WebRoot" />
+  </attributes>
+</project-module>
+

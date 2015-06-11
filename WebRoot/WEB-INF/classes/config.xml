@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+
+    <!-- 用于标识系统， 1.深圳交警   2.乌海   3.宝安 -->
+    <sysFlag>2</sysFlag>
+    <!-- 深圳交警系统，老系统停车场图片无法获取，需要通过该接口获取图片;
+                         其它地方暂时不需要配置    http://100.100.36.201:8080/picCall/Service.asmx?WSDL -->
+    <picCall>http://100.100.36.201:8080/picCall/Service.asmx?WSDL</picCall>
+	<!--
+		日志存放文件目录 ,注意 Linux：/home/esLog/dyst/ windows：D:/esLog/dyst
+	-->
+	<logFolder>/home/esLog/dyst/</logFolder>
+	<!--生产库与历史库查询时间分界点：几天前的数据（不需要修改） -->
+	<beforeDate>1</beforeDate>
+	<!--单页最大返回记录数 -->
+	<pageCount>50000</pageCount>
+	<!-- 全部数据查询时最大返回查询记录数 -->
+	<maxCount>50000</maxCount>
+	<!-- 最大允许排序数最大记录  不能超过一百万-->
+	<maxOrder>1000000</maxOrder>
+	<!-- ES初始化连接数 -->
+	<initConnection>4</initConnection>
+	<!-- ES连接池最大允许连接数 -->
+	<maxConnection>20</maxConnection>
+	<!-- ES连接池连接超时时间，默认为10000毫秒 -->
+	<timeOut>1000</timeOut>
+	<!--
+		serverIp:集群服务器IP地址集合，多个IP以半角“,”分开，中间不留空格
+		乌海：10.103.1.137,10.103.1.138,10.103.1.139,10.103.1.140
+		深圳：100.100.37.26,100.100.37.27,100.100.37.28,100.100.37.29,100.100.37.30,100.100.37.31,100.100.37.32,100.100.37.33,100.100.37.34
+		宝安：10.235.105.142,10.235.105.143,10.235.105.144,10.235.105.145
+	-->
+	<serverIp>10.103.1.137,10.103.1.138,10.103.1.139,10.103.1.140</serverIp>
+
+
+	<!-- ++++++++++++++++++Oracle数据库配置信息++++++++++++++++++++++ -->
+	<!--生产库Oracle数据库用户名-->
+	<user>its</user>
+	<!--生产库Oracle数据库密码-->
+	<password>vehicle</password>
+	<!--
+		生产库Oracle数据库URL,IP,端口号，实例名 
+		乌海：10.103.1.72:1521:sunlight
+		深圳：100.100.37.35:1521:orcl
+		宝安：10.235.105.146:1521:orcl
+		sunlight库：10.42.31.89/100.100.36.213:1522:sunlight
+	-->
+	<url>jdbc:oracle:thin:@10.103.1.72:1521:sunlight</url>
+	<!--生产库Oracle数据库驱动-->
+	<driver>oracle.jdbc.driver.OracleDriver</driver>
+	<!--生产库Oracle数据库连接池最大允许连接数-->
+	<dbMaxCon>20</dbMaxCon>
+	<!--生产库Oracle数据库默认初始化连接数-->
+	<dbInit>4</dbInit>
+	<!-- 连接池连接超时时间，默认为10000毫秒 -->
+	<dbtimeOut>1000</dbtimeOut>
+
+
+	<!--+++++++++++++++以下为图片查询接口配置信息+++++++++++++++++++++++++++ -->
+
+	<!-- http图片路径前缀，即部署到tomcat下的域名
+	     深圳：http://100.100.37.37:8989/pic
+	     宝安：http://10.235.105.134:8989/pic
+	     乌海：http://10.103.1.141:9080/pic -->
+	<picURL>http://10.103.1.141:9080/pic</picURL>
+	<!--
+		缓存路径 
+		深圳：/pic/veh_pic2/picbuf
+		宝安：/home/vehicle/gpfs_dcs3700/nfs01/picbuf
+	    乌海：/nfs03/picbuf
+	-->
+	<CacheUrl>/nfs03/picbuf</CacheUrl>
+	<!-- 挂载共享存储数目 
+		宝安：1
+	    乌海：2
+	    深圳：26
+	-->
+	<StorageNum>2</StorageNum>
+	<!-- 挂载共享存储路径,多个共享路径以半角逗号隔开
+	          宝安：/home/vehicle/gpfs_dcs3700/nfs01/pic
+	          乌海：/nfs01/pic,/nfs02/pic
+	           深圳: /pic/veh_pic1,/pic/veh_pic2,/pic/veh_pic3,/pic/veh_pic4,/pic/veh_pic5,/pic/veh_pic6,/pic/veh_pic7,/pic/veh_pic8,/pic/veh_pic9,/pic/veh_pic10,/pic/veh_pic11,/pic/veh_pic12,/pic/veh_pic13,/pic/veh_pic14,/pic/veh_pic15,/pic/veh_pic16,/pic/veh_pic17,/pic/veh_pic18,/pic/veh_pic19,/pic/veh_pic20,/pic/veh_pic21,/pic/veh_pic22,/pic/veh_pic23,/pic/veh_pic25,/pic/veh_pic26,/pic/veh_pic27-->
+	<StorageUrl>/nfs01/pic,/nfs02/pic</StorageUrl>
+	<!-- 图片地址查询时，一次性查询个数，即线程数，最佳配置为机器CPU数 -->
+	<threadNum>4</threadNum>
+	
+	<!-- 过车数据上传违法图片路径
+	     深圳：/pic/veh_pic1/epolice
+	     乌海：/nfs01/epolice
+	     宝安：/home/vehicle/gpfs_dcs3700/nfs01/epolice   -->
+	<gcscpicUrl>/nfs01/epolice</gcscpicUrl>
+	<!-- 违法图片访问url
+		深圳：http://100.100.37.37:8989/picture
+		乌海：http://10.103.1.141:9080/picture
+		宝安：http://10.235.105.135:8989/wfpic
+	 -->
+	<wftpURL>http://10.103.1.141:9080/picture</wftpURL>
+	
+	<!-- 定时加载监测点  -->
+	<getJcdTime>3600000</getJcdTime>
+	<!-- 定时加载一级红名单  -->
+	<getJjhomdTime>3600000</getJjhomdTime>
+	
+	<!--  蒙C   粤B-->
+    <qz1>蒙</qz1>
+    <qz2>蒙C</qz2>
+    
+	<!--
+		+++++++++++++++++++++++++++接口查询中涉及到的错误码配置 +++++++++++++++++++++++++++
+	-->
+	<!-- 图片地址查询时，一次性查询个数，即线程数，最佳配置为机器CPU数 -->
+	<errorCode01>01:调用单位不合法</errorCode01>
+	<errorCode02>02:业务类型代码不存在</errorCode02>
+	<errorCode03>03:给定查询时间不合法</errorCode03>
+	<errorCode04>04:查询数据库出现异常</errorCode04>
+	<errorCode05>05:分页条数超过设定值</errorCode05>
+	<errorCode06>06:查询出现异常</errorCode06>
+	<errorCode07>07:查询记录总数超过允许值</errorCode07>
+	<errorCode08>08:解析分页参数出现异常</errorCode08>
+	<errorCode09>09:XML文件无法解析</errorCode09>
+	<errorCode10>10:给定图片ID无法解析</errorCode10>
+	<errorCode11>11:分页参数不合法</errorCode11>
+	<errorCode12>12:识别记录ID不合法</errorCode12>
+	<errorCode13>13:更新记录出现异常</errorCode13>
+	<errorCode14>14:查询记录数超过允许排序值</errorCode14>
+	<errorCode15></errorCode15>
+</root>

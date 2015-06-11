@@ -1,0 +1,42 @@
+package com.json.utils;
+
+      /**
+9      * 将java类型的对象转换为JSON格式的字符串
+10      * @param object java类型的对象
+11      * @return JSON格式的字符串
+12      */
+13     public static <T> String serialize(T object) {
+14         return JSON.toJSONString(object);
+15     }
+16 
+17     /**
+18      * 将JSON格式的字符串转换为java类型的对象或者java数组类型的对象，不包括java集合类型
+19      * @param json JSON格式的字符串
+20      * @param clz java类型或者java数组类型，不包括java集合类型
+21      * @return java类型的对象或者java数组类型的对象，不包括java集合类型的对象
+22      */
+23     public static <T> T deserialize(String json, Class<T> clz) {
+24         return JSON.parseObject(json, clz);
+25     }
+26 
+27     /**
+28      * 将JSON格式的字符串转换为List<T>类型的对象
+29      * @param json JSON格式的字符串
+30      * @param clz 指定泛型集合里面的T类型
+31      * @return List<T>类型的对象
+32      */
+33     public static <T> List<T> deserializeList(String json, Class<T> clz) {
+34         return JSON.parseArray(json, clz);
+35     }
+36 
+37     /**
+38      * 将JSON格式的字符串转换成任意Java类型的对象
+39      * @param json JSON格式的字符串
+40      * @param type 任意Java类型
+41      * @return 任意Java类型的对象
+42      */
+43     public static <T> T deserializeAny(String json, TypeReference<T> type) {
+44         return JSON.parseObject(json, type);
+45     }
+46 
+47  }
